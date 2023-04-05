@@ -51,7 +51,7 @@ ggplot(cars1, aes(x=CC, y=HP))+ geom_point()
 #at first look, it doens't look like the size of the engine really affects the horse power
 
 #going to try and compare how CC affects price
-ggplot(cars1, aes(x=Price, y=CC))+ geom_point()+ coord_flip()
+ggplot(cars1, aes(x=Price, y=CC))+ geom_point()
 #doesn't look like CC has a that big of an impact on price
 
 #going to see how HP affects price now
@@ -99,7 +99,7 @@ plotNormalHistogram(cars2$Price)
 #this is positively skewed, will first try and sqrt then log
 
 cars2$PriceSQRT <- sqrt(cars2$Price)
-plotNormalHistogram(cars2$PriceSQRT)
+plotNormalHistogram(cars1$PriceSQRT)
 
 cars2$PriceLOG <- log(cars2$Price)
 plotNormalHistogram(cars2$PriceLOG)
@@ -131,7 +131,6 @@ pairwise.t.test(cars1$Price, cars2$CCgroup, p.adjust="bonferroni", pool.sd = FAL
 
 carCCMeans <- cars2 %>% group_by(CCgroup) %>% summarize(Mean = mean(Price))
 carCCMeans
-
 #after looking at the average price between the groups, group1 had the lowest, while group 5 had the highest. with these two groups being the only ones standing out, i can assome that the size of the enging did not have too big of an inpact on the price of the cars
 
 ##now i will run another anova test but on the HP.
